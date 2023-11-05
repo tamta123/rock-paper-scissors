@@ -15,7 +15,7 @@ const Rules: React.FC<{
             <Close />
           </BtnDesktop>
         </RulesWrapper>
-        <img src="public/image-rules-bonus.svg" alt="Rules Image" />
+        <img src="image-rules-bonus.svg" alt="Rules Image" />
         <BtnMobile onClick={() => props.setShowRules(false)}>
           <Close />
         </BtnMobile>
