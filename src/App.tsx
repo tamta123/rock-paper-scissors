@@ -13,7 +13,7 @@ interface Card {
 function App() {
   const [showRules, setShowRules] = useState<boolean>(false);
   const [chosenCard, setChosenCard] = useState<Card | null>(null);
-  const [showGame, setShowGame] = useState(true);
+  // const [showGame, setShowGame] = useState(true);
   const [houseCard, setHouseCard] = useState<Card | null>(null);
   const [result, setResult] = useState<string>("");
   const [score, setScore] = useState<number>(0);
@@ -25,7 +25,7 @@ function App() {
   const handlePlayAgain = () => {
     setChosenCard(null);
     setHouseCard(null);
-    setShowGame(false);
+    // setShowGame(false);
   };
 
   const selectRandomCard = () => {
@@ -70,6 +70,7 @@ function App() {
           result={result}
         />
       ) : (
+        //@ts-ignore
         <StepOne onChooseCard={handleChooseCard} />
       )}
       <RulesBtn
