@@ -6,12 +6,10 @@ interface Card {
 }
 
 interface GameProps {
-  chosenCard: Card | null;
-  onPlayAgain: () => void;
+  chosenCard: Card;
   houseCard: Card | null;
-  setHouseCard: (card: Card | null) => void;
+  onPlayAgain: () => void;
   result: string;
-  setResult: (result: string) => void;
 }
 
 const Game: React.FC<GameProps> = ({
@@ -37,11 +35,11 @@ const Game: React.FC<GameProps> = ({
           </WinnerWrapperDesktop>
         )}
         <ChoiceWrapper>
-          <ChoiceDesktop>THE HOUSE PICKED</ChoiceDesktop>
+          <ChoiceDesktop>HOUSE PICKED</ChoiceDesktop>
           <ChosenCard>
             {houseCard && <Img src={houseCard.image} alt={houseCard.name} />}
           </ChosenCard>
-          <Choice>THE HOUSE PICKED</Choice>
+          <Choice>HOUSE PICKED</Choice>
         </ChoiceWrapper>
       </LetsPlay>
       {chosenCard && houseCard && (
@@ -58,7 +56,7 @@ export default Game;
 
 const LetsPlay = styled.div`
   width: 100%;
-  height: auto;
+  height: 200px;
   display: flex;
   justify-content: space-between;
 `;
@@ -80,11 +78,13 @@ const ChoiceWrapper = styled.div`
   flex-direction: column;
   gap: 17px;
   align-items: center;
+  height: 145px;
 `;
 
 const ChosenCard = styled.div`
   flex-shrink: 0;
   border-radius: 50%;
+  height: 145px;
   @media (min-width: 768px) {
     width: 292.611px;
     height: 286.699px;
@@ -92,6 +92,7 @@ const ChosenCard = styled.div`
 `;
 
 const Choice = styled.span`
+  height: 16px;
   color: #fff;
   text-align: center;
   text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);

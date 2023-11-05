@@ -5,6 +5,7 @@ import { default as data } from "./data.ts";
 
 interface Card {
   name: string;
+  image: string;
   win: string[];
   lose: string[];
 }
@@ -36,6 +37,7 @@ function App() {
   useEffect(() => {
     if (!houseCard) {
       const timer = setTimeout(() => {
+        //@ts-ignore
         setHouseCard(selectRandomCard());
       }, 3000);
 
@@ -65,9 +67,7 @@ function App() {
           chosenCard={chosenCard}
           houseCard={houseCard}
           onPlayAgain={handlePlayAgain}
-          setHouseCard={setHouseCard}
           result={result}
-          setResult={setResult}
         />
       ) : (
         <StepOne onChooseCard={handleChooseCard} />

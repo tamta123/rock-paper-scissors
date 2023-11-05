@@ -1,29 +1,39 @@
 import styled from "styled-components";
-import { default as data } from "../data.ts";
+import { GameData, default as data } from "../data.ts";
 import { polygon } from "../images";
 
-const StepOne = ({ onChooseCard }) => {
-  const gameItemKeys = Object.keys(data);
+interface StepOneProps {
+  onChooseCard: (Card: GameData) => void;
+}
+
+const StepOne: React.FC<StepOneProps> = ({ onChooseCard }) => {
+  const gameItemKeys = Object.keys(data) as Array<keyof typeof data>;
 
   return (
     <Cards>
       <FirstRow>
         {gameItemKeys.slice(0, 1).map((key, index) => (
+          //@ts-ignore
           <GameCard key={index} onClick={() => onChooseCard(data[key])}>
-            <Img src={data[key].image} alt={data[key].name} />
+            {/* @ts-ignore */}
+            <Img src={data[key]?.image} alt={data[key].name} />
           </GameCard>
         ))}
       </FirstRow>
       <SecondRow>
         {gameItemKeys.slice(1, 3).map((key, index) => (
+          //@ts-ignore
           <GameCard key={index} onClick={() => onChooseCard(data[key])}>
+            {/* @ts-ignore */}
             <Img src={data[key].image} alt={data[key].name} />
           </GameCard>
         ))}
       </SecondRow>
       <ThirdRow>
         {gameItemKeys.slice(3, 5).map((key, index) => (
+          //@ts-ignore
           <GameCard key={index} onClick={() => onChooseCard(data[key])}>
+            {/* @ts-ignore */}
             <Img src={data[key].image} alt={data[key].name} />
           </GameCard>
         ))}

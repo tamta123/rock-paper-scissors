@@ -1,3 +1,27 @@
+type Card = {
+  image: string;
+  name: string;
+  win: string[];
+  lose: string[];
+}
+
+export type CardT = {
+  Scissors: {
+      image: string;
+      name: string;
+      win: string[];
+      lose: string[];
+  }
+}
+
+export type GameData = {
+  key:string
+  Scissors: Card;
+  Lizard: Card;
+  Rock: Card;
+  Paper: Card;
+  Spock: Card;
+}
 
 const data = {
   Scissors: {
@@ -30,7 +54,6 @@ const data = {
     win: ["Rock", "Scissors"],
     lose: ["Lizard", "Paper"],
   },
-};
+} as GameData;
 
 export default data;
-
