@@ -3,40 +3,50 @@ import { Game, Header, Rules, StepOne } from "./components";
 import { useEffect, useState } from "react";
 import { default as data } from "./data.ts";
 
+interface Card {
+  name: string;
+  win: string[];
+  lose: string[];
+}
+
 function App() {
   const [showRules, setShowRules] = useState<boolean>(false);
-  const [chosenCard, setChosenCard] = useState(null);
+  const [chosenCard, setChosenCard] = useState<Card | null>(null);
   const [showGame, setShowGame] = useState(true);
-  const [houseCard, setHouseCard] = useState(null);
-  const [result, setResult] = useState("");
-  const [score, setScore] = useState(0);
+  const [houseCard, setHouseCard] = useState<Card | null>(null);
+  const [result, setResult] = useState<string>("");
+  const [score, setScore] = useState<number>(0);
 
-  const handleChooseCard = (card) => {
+  const handleChooseCard = (card: Card) => {
     setChosenCard(card);
   };
 
   const handlePlayAgain = () => {
     setChosenCard(null);
+    setHouseCard(null);
     setShowGame(false);
   };
 
   const selectRandomCard = () => {
     const gameItems = Object.values(data);
     const randomIndex = Math.floor(Math.random() * gameItems.length);
+    console.log(randomIndex);
     return gameItems[randomIndex];
   };
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setHouseCard(selectRandomCard());
-    }, 3000);
+    if (!houseCard) {
+      const timer = setTimeout(() => {
+        setHouseCard(selectRandomCard());
+      }, 3000);
 
-    return () => clearTimeout(timer);
-  }, []);
+      return () => clearTimeout(timer);
+    }
+  }, [houseCard]);
 
   useEffect(() => {
     if (chosenCard && houseCard) {
       if (chosenCard.name === houseCard.name) {
-        setResult("It'S A TIE");
+        setResult("IT'S A TIE");
       } else if (chosenCard.win.includes(houseCard.name)) {
         setResult("YOU WIN");
         setScore(score + 1);
@@ -91,6 +101,9 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (min-width: 768px) {
+    padding: 32px 32px 48px 32px;
+  }
 `;
 
 const RulesBtn = styled.button`

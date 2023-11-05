@@ -9,11 +9,16 @@ const Rules: React.FC<{
   return (
     <Modal>
       <Container>
-        <Title>RULES</Title>
+        <RulesWrapper>
+          <Title>RULES</Title>
+          <BtnDesktop onClick={() => props.setShowRules(false)}>
+            <Close />
+          </BtnDesktop>
+        </RulesWrapper>
         <img src="public/image-rules-bonus.svg" alt="Rules Image" />
-        <Btn onClick={() => props.setShowRules(false)}>
+        <BtnMobile onClick={() => props.setShowRules(false)}>
           <Close />
-        </Btn>
+        </BtnMobile>
       </Container>
     </Modal>
   );
@@ -51,6 +56,17 @@ const Container = styled.div`
     border-radius: 8px;
   }
 `;
+
+const RulesWrapper = styled.div`
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+`;
+
 const Title = styled.h3`
   color: #3b4262;
   font-family: Barlow Semi Condensed;
@@ -60,8 +76,25 @@ const Title = styled.h3`
   line-height: 32px;
 `;
 
-const Btn = styled.button`
+const BtnMobile = styled.div`
+  display: block;
   border: none;
   outline: none;
   background-color: none;
+  @media (min-width: 768px) {
+    display: none;
+    width: 20px;
+    height: 20px;
+  }
+`;
+const BtnDesktop = styled.div`
+  display: none;
+  border: none;
+  outline: none;
+  background-color: none;
+  @media (min-width: 768px) {
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
 `;

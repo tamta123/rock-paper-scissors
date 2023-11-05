@@ -1,3 +1,4 @@
+
 const data = {
   Scissors: {
     image: "public/scissors.svg",
@@ -32,3 +33,4 @@ const data = {
 };
 
 export default data;
+

@@ -1,43 +1,55 @@
 import styled from "styled-components";
 
-const Game = ({
+interface Card {
+  name: string;
+  image: string;
+}
+
+interface GameProps {
+  chosenCard: Card | null;
+  onPlayAgain: () => void;
+  houseCard: Card | null;
+  setHouseCard: (card: Card | null) => void;
+  result: string;
+  setResult: (result: string) => void;
+}
+
+const Game: React.FC<GameProps> = ({
   chosenCard,
   onPlayAgain,
   houseCard,
-  setHouseCard,
   result,
-  setResult,
 }) => {
   return (
     <GameWrapper>
       <LetsPlay>
         <ChoiceWrapper>
+          <ChoiceDesktop>YOU PICKED</ChoiceDesktop>
           <ChosenCard>
-            {chosenCard && (
-              <img
-                src={chosenCard.image}
-                alt={chosenCard.name}
-                style={{ width: "130px", height: "133px" }}
-              />
-            )}
+            {chosenCard && <Img src={chosenCard.image} alt={chosenCard.name} />}
           </ChosenCard>
           <Choice>YOU PICKED</Choice>
         </ChoiceWrapper>
+        {chosenCard && houseCard && (
+          <WinnerWrapperDesktop>
+            <Winner>{result}</Winner>
+            <Button onClick={onPlayAgain}>PLAY AGAIN</Button>
+          </WinnerWrapperDesktop>
+        )}
         <ChoiceWrapper>
+          <ChoiceDesktop>THE HOUSE PICKED</ChoiceDesktop>
           <ChosenCard>
-            {houseCard && (
-              <img
-                src={houseCard.image}
-                alt={houseCard.name}
-                style={{ width: "130px", height: "133px" }}
-              />
-            )}
+            {houseCard && <Img src={houseCard.image} alt={houseCard.name} />}
           </ChosenCard>
           <Choice>THE HOUSE PICKED</Choice>
         </ChoiceWrapper>
       </LetsPlay>
-      <Winner>{result}</Winner>
-      <Button onClick={onPlayAgain}>PLAY AGAIN</Button>
+      {chosenCard && houseCard && (
+        <WinnerWrapper>
+          <Winner>{result}</Winner>
+          <Button onClick={onPlayAgain}>PLAY AGAIN</Button>
+        </WinnerWrapper>
+      )}
     </GameWrapper>
   );
 };
@@ -71,13 +83,12 @@ const ChoiceWrapper = styled.div`
 `;
 
 const ChosenCard = styled.div`
-  width: 130px;
-  height: 133px;
   flex-shrink: 0;
   border-radius: 50%;
-  /* background-color: black;
-  opacity: 0.1;
-  z-index: 5; */
+  @media (min-width: 768px) {
+    width: 292.611px;
+    height: 286.699px;
+  }
 `;
 
 const Choice = styled.span`
@@ -90,6 +101,43 @@ const Choice = styled.span`
   font-weight: 700;
   line-height: 32px;
   letter-spacing: 1.875px;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const ChoiceDesktop = styled.span`
+  color: #fff;
+  text-align: center;
+  text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+  font-family: Barlow Semi Condensed;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 3px;
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+  }
+`;
+const WinnerWrapper = styled.div`
+  height: 125px;
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+const WinnerWrapperDesktop = styled.div`
+  display: none;
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    height: 287px;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding: 55px;
+  }
 `;
 
 const Winner = styled.div`
@@ -117,4 +165,13 @@ const Button = styled.button`
   line-height: normal;
   letter-spacing: 2.5px;
   text-transform: uppercase;
+`;
+
+const Img = styled.img`
+  width: 130px;
+  height: 133px;
+  @media (min-width: 768px) {
+    width: 292.611px;
+    height: 286.699px;
+  }
 `;

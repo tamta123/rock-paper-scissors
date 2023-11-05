@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const Header = ({ score }) => {
+interface HeaderProps {
+  score: number;
+}
+
+const Header: React.FC<HeaderProps> = ({ score }) => {
   return (
     <Main>
       <Name>
@@ -24,12 +28,15 @@ const Main = styled.main`
   width: 100%;
   height: auto;
   padding: 12px;
-  border-radius: 5px;
+  border-radius: 15px;
   border: 3px solid rgba(255, 255, 255, 0.29);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  @media (min-width: 768px) {
+    width: 50%;
+  }
 `;
 
 const Name = styled.div`
@@ -42,6 +49,15 @@ const Name = styled.div`
   font-style: normal;
   font-weight: 700;
   line-height: 16px;
+  @media (min-width: 768px) {
+    width: 50%;
+    color: #fff;
+    text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
+  }
 `;
 
 const Score = styled.div`
@@ -51,6 +67,12 @@ const Score = styled.div`
   border-radius: 4px;
   background: linear-gradient(0deg, #f3f3f3 0%, #fff 100%);
   box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
+  @media (min-width: 768px) {
+    height: 134px;
+    gap: 14px;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const Text = styled.div`
@@ -61,6 +83,9 @@ const Text = styled.div`
   font-weight: 600;
   line-height: normal;
   letter-spacing: 1.563px;
+  @media (min-width: 768px) {
+    font-size: 26px;
+  }
 `;
 
 const Number = styled.div`
@@ -70,4 +95,8 @@ const Number = styled.div`
   font-style: normal;
   font-weight: 700;
   line-height: 40px;
+  @media (min-width: 768px) {
+    font-size: 80px;
+    height: 80px;
+  }
 `;
