@@ -1,5 +1,3 @@
-import Test from ''
-import { polygon } from "./images";
 
 type Card = {
   image: string;
@@ -28,31 +26,31 @@ export type GameData = {
 
 const data = {
   Scissors: {
-    image: polygon,
+    image: "scissors.svg",
     name: "Scissors",
     win: ["Paper", "Lizard"],
     lose: ["Spock", "Rock"],
   },
   Lizard: {
-    image: "public/lizard.svg",
+    image: "lizard.svg",
     name: "Lizard",
     win: ["Paper", "Spock"],
     lose: ["Scissors", "Rock"],
   },
   Rock: {
-    image: "public/rock.svg",
+    image: "/rock.svg",
     name: "Rock",
     win: ["Scissors", "Lizard"],
     lose: ["Spock", "Paper"],
   },
   Paper: {
-    image: "public/paper.svg",
+    image: "/paper.svg",
     name: "Paper",
     win: ["Rock", "Spock"],
     lose: ["Lizard", "Scissors"],
   },
   Spock: {
-    image: "public/spock.svg",
+    image: "/spock.svg",
     name: "Spock",
     win: ["Rock", "Scissors"],
     lose: ["Lizard", "Paper"],
